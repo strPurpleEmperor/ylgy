@@ -16,7 +16,6 @@
 }
 body {
     overflow: hidden;
-    background-color: #366FE3;
 }
 
 /*============================================================
@@ -24,15 +23,8 @@ body {
 ==============================================================*/
 .logo-container {
     position: relative;
-    width: 100%;
-    height: 50px;
 }
 .logo-container .logo {
-    margin-top: 1rem;
-    height: 1rem;
-    font-size: 0.5rem;
-    color: lightcoral;
-    font-weight: bold;
 }
 .game-container-box {
     position: relative;
@@ -44,8 +36,8 @@ body {
     height: 10rem;
     width: 10rem;
     pointer-events: auto;
-    top: 0.75rem;
-    left: 0.75rem;
+    top: 0;
+    left: 0.2rem;
 }
 .grid-1 {
     position: absolute;
@@ -89,13 +81,14 @@ body {
 }
 .game-selected-container {
     position: relative;
-    margin-top: 50px;
-    height: 68px;
-    width: 504px;
+    margin-top: 0.75rem;
+    height: 1rem;
+    width: 7.6rem;
     border-radius: 3px;
     padding: 5px;
-    background-color: #104f86;
+    background-color: lightcoral;
     border: 5px dashed #d0defc;
+    box-sizing: content-box;
 }
 
 /*============================================================
@@ -104,28 +97,32 @@ body {
 .game-selected-container .game-item {
     position: relative;
     float: left;
-    margin-right: 5px;
-    width: 65px;
-    height: 65px;
+    margin-right: 0.1rem;
+    width: 1rem;
+    height: 1rem;
     border-radius: 3px;
     overflow: hidden;
     box-shadow: 0px 0px 5px #d7d5d5;
 }
+.game-selected-container .game-item:last-of-type {
+    margin-right: 0;
+}
 .game-selected-container .game-item img {
-    height: 35px;
-    margin-top: 15px;
+    width: 1rem;
+    display: block;
 }
 .grid-game-item {
     position: absolute;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 5px;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 0.2rem;
     overflow: hidden;
-    border: 1px solid whitesmoke;
+    border: 0.01rem solid whitesmoke;
 
     cursor: pointer;
     transition: all 0.5s;
     box-sizing: border-box;
+    overflow: hidden;
 }
 .grid-game-item:hover {
     transform: scale(1.2);
@@ -140,10 +137,10 @@ body {
 
 .disable-click {
     position: absolute;
-    left: 0px;
-    top: 0px;
-    width: 100%;
-    height: 100%;
+    left: 0;
+    top: 0;
+    width: 1.2rem;
+    height: 1.2rem;
     background-color: black;
 }
 .grid-4 .disable-click {

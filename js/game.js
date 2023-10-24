@@ -65,7 +65,7 @@ function GameGrid() {
     var size = 0;
 
     /** 初始化所有元素 **/
-    var items = new Array();
+    var items = [];
 
     var colors = ["#95e1d3", "#eaffd0", "#fce38a", "#f38181", "#ffe2e2", "#e0f9b5", "#cadefc", "#a1eafb", "#ffd3b5", "#b9d7ea"];
 
@@ -114,7 +114,7 @@ function GameGrid() {
      */
     this.initGameData = function() {
         var idx = 0;
-        for (var i = 0; i < this.initSize(); i++) {
+        for (let i = 0; i < this.initSize(); i++) {
             idx = Math.floor(i / 15);
             var id = i;
             var name = idx;
@@ -123,7 +123,6 @@ function GameGrid() {
             // 加入游戏元素容器
             items.add(new GameItem(id, name, icon, color));
         }
-        console.log("完成游戏元素初始化")
         return items;
     }
 
@@ -185,13 +184,13 @@ function GameGrid() {
                     }
                 }
             }
-            var selectCount = $(".game-selected-container").children(".game-item").length;
-            if (selectCount == 7) {
-                var gameOver ="<div style='position: relative; width: 390px; height: 540px;'>" +
-                    "<img src='./image/game.over.png' style='position: absolute; top: 90px; width: 180px; left: 100px'> " +
-                    "<p style='position: absolute; font-size: 30px; top: 330px; left: 100px;'>GAME OVER !</p>" +
-                    "<button id='restart' style='position: absolute; left: 90px; top: 410px; width: 200px; height: 50px;" +
-                    " background-color: transparent; border: moccasin' onclick='location.reload()'><img src='./image/game.restart.png'></button></div>";
+            const selectCount = $(".game-selected-container").children(".game-item").length;
+            if (selectCount === 7) {
+                const gameOver = "<div style='position: relative; width: 390px; height: 540px;'>" +
+                  "<img src='./image/game.over.png' style='position: absolute; top: 90px; width: 180px; left: 100px' alt=''> " +
+                  "<p style='position: absolute; font-size: 30px; top: 330px; left: 100px;'>GAME OVER !</p>" +
+                  "<button id='restart' style='position: absolute; left: 90px; top: 410px; width: 200px; height: 50px;" +
+                  " background-color: transparent; border: moccasin' onclick='location.reload()'><img src='./image/game.restart.png' alt=''></button></div>";
                 layer.open({
                     type: 1,
                     title: false,
@@ -209,8 +208,8 @@ function GameGrid() {
             }
 
             // 刷新状态
-            var refreshMatrix;
-            var clickMatrix;
+            let refreshMatrix;
+            let clickMatrix;
             switch (clickGridId) {
                 case "5":
                     refreshMatrix = matrix4;
@@ -299,19 +298,19 @@ function GameGrid() {
     this.addItem2Grid = function (gridLevel, matrix, x, y, topMatrix, isTop) {
         for (let i = 0; i < x; i++) {
             for (let j = 0; j < y; j++) {
-                if (matrix[i][j] == 1) {
-                    var item = items[initItemIndex++];
-                    var leftPx = j * 72 + "px";
-                    var topPx = i * 72 + "px";
-                    var disableClickItem = "";
+                if (matrix[i][j] === 1) {
+                    const item = items[initItemIndex++];
+                    const leftPx = j * 1.2 + "rem";
+                    const topPx = i * 1.2 + "rem";
+                    let disableClickItem = "";
                     if (!isTop) {
                         // (x, y)、x, y+1)、(x+1, y)、(x+1, y+1)
-                        var topMatrixX = topMatrix.length;
-                        var topMatrixY = topMatrix[0].length;
-                        var condit1 = (i - 1 < 0) || (j - 1 < 0) ? false : topMatrix[i-1][j-1] == 1;
-                        var condit2 = (i - 1 < 0) || (j >= topMatrixY) ? false : topMatrix[i-1][j] == 1;
-                        var condit3 = (i >= topMatrixX) || (j - 1 < 0) ? false : topMatrix[i][j-1] == 1;
-                        var condit4 = (i >= topMatrixX) || (j >= topMatrixY) ? false : topMatrix[i][j] == 1;
+                        const topMatrixX = topMatrix.length;
+                        const topMatrixY = topMatrix[0].length;
+                        const condit1 = (i - 1 < 0) || (j - 1 < 0) ? false : topMatrix[i - 1][j - 1] == 1;
+                        const condit2 = (i - 1 < 0) || (j >= topMatrixY) ? false : topMatrix[i - 1][j] == 1;
+                        const condit3 = (i >= topMatrixX) || (j - 1 < 0) ? false : topMatrix[i][j - 1] == 1;
+                        const condit4 = (i >= topMatrixX) || (j >= topMatrixY) ? false : topMatrix[i][j] == 1;
                         if (condit1 || condit2 || condit3 || condit4) {
                             disableClickItem = "<div class='disable-click'></div>";
                         }
@@ -362,9 +361,9 @@ function GameGrid() {
      * 打乱arr顺序
      */
     this.sort = function () {
-        var length = this.size(),
-            randomIndex,
-            temp;
+        let length = this.size(),
+          randomIndex,
+          temp;
         while (length) {
             randomIndex = Math.floor(Math.random() * (length--));
             temp = items[randomIndex];
@@ -378,8 +377,7 @@ function GameGrid() {
      */
     this.printItems = function () {
         for (let i = 0; i < this.size(); i++) {
-            var itemTmp = items[i];
-            console.log("item = id:"+itemTmp.id() + " name:"+itemTmp.name() + " icon:"+itemTmp.icon() + " color:"+itemTmp.color())
+            const itemTmp = items[i];
         }
     }
 
@@ -390,18 +388,19 @@ function GameGrid() {
      * @param emptySize 空个数，即位置0的个数
      */
     this.initMatrix = function (x, y, emptySize) {
-        // 初始化一个 X * Y 的值为1的矩阵
-        var matrix = new Array();
-        for (var i = 0; i < x; i++) {
-            matrix[i] = new Array();
-            for (var j = 0; j < y; j++) {
+        let i;
+// 初始化一个 X * Y 的值为1的矩阵
+        const matrix = [];
+        for (i = 0; i < x; i++) {
+            matrix[i] = [];
+            for (let j = 0; j < y; j++) {
                 matrix[i][j] = 1;
             }
         }
         // 随机生成emptySize个随机位置，设置值为0，代表没有元素
-        var validateArr = new Array(); // 娇艳重复的
-        for (var i = 0; i < emptySize; i++) {
-            var randomArr = getRandom(x, y, validateArr);
+        const validateArr = []; // 娇艳重复的
+        for (i = 0; i < emptySize; i++) {
+            const randomArr = getRandom(x, y, validateArr);
             matrix[randomArr[0]][randomArr[1]] = 0;
         }
         return matrix;
@@ -413,13 +412,14 @@ function GameGrid() {
  * 随机生成一个数组中不存在的随机数
  * @param n 开始值
  * @param m 结束值
- * @returns {number}
+ * @param arr
+ * @returns {*[]}
  */
 function getRandom(n, m, arr){
-    var randomArr = new Array();
+    const randomArr = [];
     randomArr.add(getRandomNumber(0, n-1));
     randomArr.add(getRandomNumber(0, m-1));
-    var zeroTag = randomArr[0] + "-" + randomArr[1];
+    const zeroTag = randomArr[0] + "-" + randomArr[1];
     if (!arr.contain(zeroTag)) {
         arr.add(zeroTag);
         return randomArr;
@@ -439,7 +439,7 @@ function getRandomNumber(n, m){
  * @param val
  */
 Array.prototype.remove = function(val) {
-    var index = this.indexOf(val);
+    const index = this.indexOf(val);
     if (index > -1) {
         this.splice(index, 1);
     }
