@@ -1,0 +1,195 @@
+/**
+ * ============================================================
+ * @author 程序员七七
+ * @description 程序员盒子网站作者 & 代码链网站作者
+ * @website https://wwww.coderutil.com
+ * @date 2022-09-24
+ * ============================================================
+ */
+
+/*============================================================
+                            全局基础样式
+==============================================================*/
+* {
+    margin: 0px;
+    padding: 0px;
+}
+body {
+    overflow: hidden;
+    background-color: #366FE3;
+}
+
+/*============================================================
+                            游戏盒子样式
+==============================================================*/
+.logo-container {
+    position: relative;
+    width: 100%;
+    height: 50px;
+}
+.logo-container .logo {
+    margin-top: 1rem;
+    height: 1rem;
+    font-size: 0.5rem;
+    color: lightcoral;
+    font-weight: bold;
+}
+.game-container-box {
+    position: relative;
+    height: 10rem;
+    width: 10rem;
+}
+.game-container {
+    position: relative;
+    height: 10rem;
+    width: 10rem;
+    pointer-events: auto;
+    top: 0.75rem;
+    left: 0.75rem;
+}
+.grid-1 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    background-color: transparent;
+}
+.grid-2 {
+    position: absolute;
+    left: 0.8rem;
+    top: 0.8rem;
+    width: 0;
+    height: 0;
+    background-color: transparent;
+}
+.grid-3 {
+    position: absolute;
+    left: 1.2rem;
+    top: 1.2rem;
+    width: 0;
+    height: 0;
+    background-color: transparent;
+}
+.grid-4 {
+    position: absolute;
+    left: 1.8rem;
+    top: 1.8rem;
+    width: 0;
+    height: 0;
+    background-color: transparent;
+}
+.grid-5 {
+    position: absolute;
+    left: 2.5rem;
+    top: 2.5rem;
+    width: 0;
+    height: 0;
+    background-color: transparent;
+}
+.game-selected-container {
+    position: relative;
+    margin-top: 50px;
+    height: 68px;
+    width: 504px;
+    border-radius: 3px;
+    padding: 5px;
+    background-color: #104f86;
+    border: 5px dashed #d0defc;
+}
+
+/*============================================================
+                            游戏元素样式
+==============================================================*/
+.game-selected-container .game-item {
+    position: relative;
+    float: left;
+    margin-right: 5px;
+    width: 65px;
+    height: 65px;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0px 0px 5px #d7d5d5;
+}
+.game-selected-container .game-item img {
+    height: 35px;
+    margin-top: 15px;
+}
+.grid-game-item {
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid whitesmoke;
+
+    cursor: pointer;
+    transition: all 0.5s;
+    box-sizing: border-box;
+}
+.grid-game-item:hover {
+    transform: scale(1.2);
+}
+
+.grid-game-item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.disable-click {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+}
+.grid-4 .disable-click {
+    opacity: 0.6;
+}
+.grid-3 .disable-click {
+    opacity: 0.6;
+}
+.grid-2 .disable-click {
+    opacity: 0.6;
+}
+.grid-1 .disable-click {
+    opacity: 0.6;
+}
+.grid-5 .grid-game-item {
+    box-shadow: 0px 0px 10px black;
+}
+.grid-4 .grid-game-item {
+    box-shadow: 0px 0px 10px black;
+}
+.grid-3 .grid-game-item {
+    box-shadow: 0px 0px 10px black;
+}
+.grid-2 .grid-game-item {
+    box-shadow: 0px 0px 10px black;
+}
+
+
+/*============================================================
+                            游戏元素样式
+==============================================================*/
+.popup {
+    background-color: transparent;/*背景透明*/
+    box-shadow: 0 0 0 rgba(0,0,0,0);/*前景无阴影*/
+}
+.close-popup-btn {
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 100px;
+}
+#restart {
+    cursor: pointer;
+    transition: all 0.5s;
+}
+#restart:hover {
+    transform: scale(1.2);
+}
